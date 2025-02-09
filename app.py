@@ -29,10 +29,10 @@ app.after_request(add_cors_headers)
 
 input_video = r"D:\Graduation\deployment\deployment\test_lie (1).mp4"
 saved_model = load_model(
-    r"D:\Graduation\deployment\deployment\lstm_without_masking(94).h5"
+    r"D:\TEST\deployment\deployment\models\lstm_without_masking(94).h5"
 )
 
-model = load_model("D:\\Graduation\\deployment\\deployment\\audio_model.h5")
+model = load_model("D:\\TEST\\deployment\\deployment\\models\\audio_model.h5")
 
 
 # check if the input video has no person or has multiple persons
@@ -272,7 +272,7 @@ def make_prediction_audio(input_video):
     segments = split_and_pad_audio(audio_file, segment_duration=10, sample_rate=16000)
     mfcc_data_df = extract_mfcc_from_segments(segments, sample_rate=16000, n_mfcc=13)
     mfcc_data_df.drop(["segment_index"], axis=1, inplace=True)
-    scaler = load(r"D:\Graduation\deployment\deployment\scaler.joblib")
+    scaler = load(r"D:\TEST\deployment\deployment\models\scaler.joblib")
     mfcc_data_df = scaler.transform(mfcc_data_df)
     mfcc_data_reshaped = np.expand_dims(mfcc_data_df, axis=1)
     y_pred = model.predict(mfcc_data_reshaped)
