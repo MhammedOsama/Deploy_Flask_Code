@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "functions": {
-    "app.py": {
-      "runtime": "python3.10",
-      "includeFiles": [
-        "lstm_without_masking(94).h5",
-        "audio_model.h5",
-        "scaler.joblib"
-      ]
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
+  ]
 }
